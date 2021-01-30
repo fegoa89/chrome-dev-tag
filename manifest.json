@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "Development Icon Tab",
+  "version": "1.0",
+  "description": "Displays an icon before the tab title when you are browsing through a 'test' domain defined as localhost, 127.0.0.1, .dev, .test etc",
+  "icons": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+  },
+  "browser_action": {
+      "default_icon": "icons/icon48.png"
+  },
+  "content_scripts": [{
+      "matches": ["*://*/*"],
+      "include_globs": [
+          "*developer*",
+          "*dev*",
+          "*staging*",
+          "*test*",
+          "*127.0.0.1*",
+          "*localhost*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+  }],
+  "web_accessible_resources": [
+      "icons/*.png"
+  ],
+  "permissions": ["tabs", "activeTab", "storage"]
+}
